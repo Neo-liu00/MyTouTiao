@@ -10,7 +10,7 @@ public class LoginDto {
     /**
      * 手机号
      */
-    @ApiModelProperty(value = "手机号",required = true)
+    @ApiModelProperty( value = "手机号",required = true)
     private String phone;
 
     /**

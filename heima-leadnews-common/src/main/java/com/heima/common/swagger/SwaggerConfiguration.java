@@ -27,10 +27,10 @@ public class SwaggerConfiguration {
    }
 
    private ApiInfo buildApiInfo() {
-      Contact contact = new Contact("黑马程序员","","");
+      Contact contact = new Contact("programmer","","");
       return new ApiInfoBuilder()
-              .title("黑马头条-平台管理API文档")
-              .description("黑马头条后台api")
+              .title("头条-平台管理API文档")
+              .description("头条后台api")
               .contact(contact)
               .version("1.0.0").build();
    }

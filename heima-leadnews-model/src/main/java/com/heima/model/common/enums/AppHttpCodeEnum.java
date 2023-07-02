@@ -13,7 +13,7 @@ public enum AppHttpCodeEnum {
     TOKEN_REQUIRE(52,"TOKEN是必须的"),
     // SIGN验签 100~120
     SIGN_INVALID(100,"无效的SIGN"),
-    SIG_TIMEOUT(101,"SIGN已过期"),
+    SIGN_TIMEOUT(101,"SIGN已过期"),
     // 参数错误 500~1000
     PARAM_REQUIRE(500,"缺少参数"),
     PARAM_INVALID(501,"无效参数"),
@@ -25,7 +25,7 @@ public enum AppHttpCodeEnum {
     DATA_NOT_EXIST(1002,"数据不存在"),
     // 数据错误 3000~3500
     NO_OPERATOR_AUTH(3000,"无权限操作"),
-    NEED_ADMIND(3001,"需要管理员权限");
+    NEED_ADMIN(3001,"需要管理员权限");
 
     int code;
     String errorMessage;

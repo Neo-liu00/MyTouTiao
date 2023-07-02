@@ -11,7 +11,6 @@ import java.util.Map;
 
 /**
  * 通用的结果返回类
- * @param <T>
  */
 public class ResponseResult<T> implements Serializable {
 

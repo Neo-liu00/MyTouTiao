@@ -7,6 +7,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 
 @SpringBootApplication
+//集成注册中心
 @EnableDiscoveryClient
 @MapperScan("com.heima.user.mapper")
 public class UserApplication {
