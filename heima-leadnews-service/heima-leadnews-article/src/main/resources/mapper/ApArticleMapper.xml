@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.heima.article.mapper.ApArticleMapper">
+    <resultMap id="resultMap" type="com.heima.model.common.article.pojos.ApArticle">
+        <id column="id" property="id"></id>
+        <result column="title" property="title"></result>
+        <result column="author_id" property="authorId"></result>
+        <result column="author_name" property="authorName"></result>
+        <result column="channel_id" property="channelId"></result>
+        <result column="channel_name" property="channelName"></result>
+        <result column="layout" property="layout"></result>
+        <result column="flag" property="flag"></result>
+        <result column="images" property="images"></result>
+        <result column="labels" property="labels"></result>
+        <result column="likes" property="likes"></result>
+        <result column="collection" property="collection"></result>
+        <result column="comment" property="comment"></result>
+        <result column="views" property="views"></result>
+        <result column="province_id" property="provinceId"></result>
+        <result column="city_id" property="cityId"></result>
+        <result column="county_id" property="countyId"></result>
+        <result column="created_time" property="createdTime"></result>
+        <result column="publish_time" property="publishTime"></result>
+        <result column="sync_status" property="syncStatus"></result>
+        <result column="origin" property="origin"></result>
+        <result column="static_url" property="staticUrl"></result>
+    </resultMap>
+
+    <select id="getArticleList" resultMap="resultMap">
+        select aa.*
+        from `ap_article` aa
+            left join
+            `ap_article_config` aac
+            on aa.id = aac.article_id
+        <where>
+            and aac.is_down != 1 #未下架
+            and aac.is_delete != 1 #未被删除
+            <if test="type != null and type == 1">
+                <!--load more-->
+                and aa.publish_time <![CDATA[<]]> #{dto.minTime}
+            </if>
+            <if test="type != null and type == 2">
+                <!--load new-->
+                and aa.publsh_time <![CDATA[>]]> #{dto.maxTime}
+            </if>
+            <!--是否指定频道类别-->
+            <if test="dto.tag != '_all_'">
+                and aa.channel_id = #{dto.tag}
+            </if>
+        </where>
+        order by aa.publish_time desc
+        limit #{dtp.size}
+    </select>
+</mapper>
